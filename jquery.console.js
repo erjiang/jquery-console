@@ -383,6 +383,12 @@
                     if (ret) {
                         handleCommand();
                     }
+                    // allow the user to insert multiline expressions if
+                    // config.multiline is enabled and command is not validated
+                    else if(config.multiline === true) {
+                        console.log("insert return!");
+                        typer.consoleInsert(13); // insert a newline
+                    }
                 } else {
                     commandResult(ret,"jquery-console-message-error");
                 }
@@ -609,6 +615,7 @@
                     .replace(/</g,'&lt;')
                     .replace(/</g,'&lt;')
                     .replace(/ /g,'&nbsp;')
+                    .replace(/\n/g,'<br />')
                     .replace(/([^<>&]{10})/g,'$1<wbr>&shy;' + wbr)
             );
         };
