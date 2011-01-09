@@ -250,6 +250,13 @@
                 typer.val("");
             }, 0);
         });
+        // Opera doesn't do onpaste but DOES do oninput
+        if($.browser.opera) {
+            typer.bind('input', function(e) {
+                typer.consoleInsert(typer.val());
+                typer.val("");
+            });
+        }
         
         ////////////////////////////////////////////////////////////////////////
         // Handle key hit before translation
